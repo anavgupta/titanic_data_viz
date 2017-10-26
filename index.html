@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head>
   <meta charset="utf-8">
   <style type="text/css">
     h2 {
@@ -10,224 +11,13 @@
     }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="js/d3.v3.min.js"></script>
-  <script src="js/dimple.v2.0.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-
-    // Give default values of margin, height and width
-    "use strict";
-      var margin = 75,
-          width = 1100 - margin,
-          height = 600 - margin;
-
-    function create_svg(div_id, width = 1025, height = 525, margin = 75) {
-      return d3.select("body div#"+ div_id)
-        .append("svg")
-        .attr("width", width + margin)
-        .attr("height", height + margin);
-    }
-
-    // Draws the survival by gender Bar chart
-    function survival_by_gender(svg, data, in_percent = false) {
-      debugger;
-      var myChart = new dimple.chart(svg, data);
-
-      if (in_percent == true) {
-        var yAxis = myChart.addPctAxis('y', 'count');
-      }
-      else {
-        var yAxis = myChart.addMeasureAxis('y', 'count');
-      }
-
-      var xAxis = myChart.addCategoryAxis('x', 'Sex');
-      var series = myChart.addSeries('Outcome', dimple.plot.bar);
-      series.addOrderRule(['Survived',  'Did not Survived']);
-      myChart.addLegend(60, 10, 450, 20, "right");
-      var draw_viz = myChart.draw(400);
-    }
-
-    // Draws the survival by Socio-Econ class Bar chart
-    function survival_by_econ_class(svg, data, in_percent = false) {
-      debugger;
-      var myChart = new dimple.chart(svg, data);
-
-      var xAxis = myChart.addCategoryAxis('x', 'Pclass');
-
-      if (in_percent == true) {
-        var yAxis = myChart.addPctAxis('y', 'count');
-      }
-      else {
-        var yAxis = myChart.addMeasureAxis('y', 'count');
-      }
-
-      var series = myChart.addSeries('Outcome', dimple.plot.bar);
-      series.addOrderRule(['Survived',  'Did not Survived']);
-
-      // Sort the chart usign Pclass in desc order
-      // from lower class(=3) to Upper class(=1)
-      // series.addOrderRule('Pclass', true);
-      xAxis.addOrderRule(['3', '2', '1']);
-      myChart.addLegend(60, 10, 450, 20, "right");
-      var draw_viz = myChart.draw(400);
-    }
-
-    // Draws the survival by Embarkation group Bar chart
-    function survival_by_embarkation(svg, data, in_percent = false) {
-      debugger;
-
-      var myChart = new dimple.chart(svg, data);
-      // checking for the memokiko chart
-      // var xAxis = myChart.addPctAxis('x', 'Embarked');
-      // var yAxis = myChart.addPctAxis('y', 'count');
-
-      var xAxis = myChart.addCategoryAxis('x', 'Embarked');
-
-      if (in_percent == true) {
-        var yAxis = myChart.addPctAxis('y', 'count');
-      }
-      else {
-        var yAxis = myChart.addMeasureAxis('y', 'count');
-      }
-
-      var series = myChart.addSeries('Outcome', dimple.plot.bar);
-      series.addOrderRule(['Survived',  'Did not Survived']);
-      myChart.addLegend(60, 10, 450, 20, "right");
-      var draw_viz = myChart.draw(400);
-    }
-
-    // Draws the survival by Age group Bar chart
-    function survival_by_age_group(svg, data, in_percent = false){
-      debugger;
-
-      var myChart = new dimple.chart(svg, data);
-      var xAxis = myChart.addCategoryAxis('x', ['age_group', 'Sex']);
-      if (in_percent == true) {
-        var yAxis = myChart.addPctAxis('y', 'count');
-      }
-      else {
-        var yAxis = myChart.addMeasureAxis('y', 'count');
-      }
-
-      // var xAxis = myChart.addPctAxis('x', ['age_group', 'Sex']);
-      // var yAxis = myChart.addPctAxis('y', 'count');
-
-      xAxis.addOrderRule(["0-10", "10-20", "20-30", "30-40", "40-50",
-        "50-60", "60-70", "70-80", "None"]);
-
-      var series = myChart.addSeries('Outcome', dimple.plot.bar);
-      series.addOrderRule(['Survived',  'Did not Survived']);
-      myChart.addLegend(60, 10, 450, 20, "right");
-      var draw_viz = myChart.draw(400);
-    }
-
-    // main function that will call the draw chart functions
-    function draw(data) {
-
-      // call to the survival by gender chart function
-      // create the svg for the chart
-      var svg_1 = create_svg('viz_1', width = 520);
-      survival_by_gender(svg_1, data);
-
-      // Adding event handler on button
-      d3.select( "div#viz_1 #btn_1" ).on( "click", function() {
-        debugger;
-        $('#btn_2').removeClass('active');
-        $('#btn_1').addClass('active');
-
-        svg_1.html('');
-        survival_by_gender(svg_1, data);
-      });
-
-      // Adding event handler on button
-      d3.select( "div#viz_1 #btn_2" ).on( "click", function() {
-        debugger;
-        $('#btn_1').removeClass('active');
-        $('#btn_2').addClass('active');
-        svg_1.html('');
-        survival_by_gender(svg_1, data, true);
-      });
-
-
-      // call to the survival by socio_econ class chart function
-      // create the svg for the chart
-      var svg_2 = create_svg('viz_2', width = 520);
-      survival_by_econ_class(svg_2, data);
-
-      // Adding event handler on button
-      d3.select( "div#viz_2 #btn_1" ).on( "click", function() {
-        debugger;
-        $('#btn_2').removeClass('active');
-        $('#btn_1').addClass('active');
-
-        svg_2.html('');
-        survival_by_econ_class(svg_2, data);
-      });
-
-      // Adding event handler on button
-      d3.select( "div#viz_2 #btn_2" ).on( "click", function() {
-        debugger;
-        $('#btn_1').removeClass('active');
-        $('#btn_2').addClass('active');
-        svg_2.html('');
-        survival_by_econ_class(svg_2, data, true);
-      });
-
-      // call to the survival by embarkation chart function
-      // create the svg for the chart
-      var svg_3 = create_svg('viz_3', width = 520);
-      survival_by_embarkation(svg_3, data);
-
-      // Adding event handler on button
-      d3.select( "div#viz_3 #btn_1" ).on( "click", function() {
-        debugger;
-        $('#btn_2').removeClass('active');
-        $('#btn_1').addClass('active');
-
-        svg_3.html('');
-        survival_by_embarkation(svg_3, data);
-      });
-
-      // Adding event handler on button
-      d3.select( "div#viz_3 #btn_2" ).on( "click", function() {
-        debugger;
-        $('#btn_1').removeClass('active');
-        $('#btn_2').addClass('active');
-        svg_3.html('');
-        survival_by_embarkation(svg_3, data, true);
-      });
-
-      // call to the survival by embarkation chart function
-      // create the svg for the chart
-      var svg_4 = create_svg('viz_4');
-      survival_by_age_group(svg_4, data);
-
-      // Adding event handler on button
-      d3.select( "div#viz_4 #btn_1" ).on( "click", function() {
-        debugger;
-        $('#btn_2').removeClass('active');
-        $('#btn_1').addClass('active');
-
-        svg_4.html('');
-        survival_by_age_group(svg_4, data);
-      });
-
-      // Adding event handler on button
-      d3.select( "div#viz_4 #btn_2" ).on( "click", function() {
-        debugger;
-        $('#btn_1').removeClass('active');
-        $('#btn_2').addClass('active');
-        svg_4.html('');
-        survival_by_age_group(svg_4, data, true);
-      });
-    }
-
-
-  </script>
-<head>
-
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/dimple.v2.0.0.min.js"></script>
+  <script src="js/graph_functions.js"></script>
 </head>
+
 <body>
   <div class="container-fluid">
     <div class="col-md-12 svg_box" id = 'viz_1'>
@@ -235,16 +25,6 @@
         <button type="button" class="btn btn-primary active" id = "btn_1">Count</button>
         <button type="button" class="btn btn-primary" id = "btn_2">Percentage</button>
       </div>
-
-      <!-- <nav class="navbar navbar-inverse">
-        <ul class="nav navbar-nav">
-          <li><button class="btn btn-primary">age</button></li>
-          <li><button class="btn btn-primary">sex</button></li>
-          <li><button class="btn btn-primary">embarked</button></li>
-          <li><button class="btn btn-primary">econ</button></li>
-        </ul>
-      </nav> -->
-
     </div>
     <div class="col-md-12 svg_box" id = 'viz_2'>
       <div class="btn-group col-md-12">
@@ -272,7 +52,7 @@
       // if changes are need in the data
       d['count'] = 1;
       if (d['Survived'] == 0) {
-        d['Outcome'] = "Did not Survived";
+        d['Outcome'] = "Perished";
       }
       else if (d['Survived'] == 1) {
         d['Outcome'] = "Survived";
