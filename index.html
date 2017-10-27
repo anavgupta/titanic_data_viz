@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <style type="text/css">
-    h2 {
+    h3 {
       text-align: center;
+      margin-bottom: 10px;
     }
     div.svg_box {
-      margin-bottom: 100px;
+      margin-bottom: 50px;
     }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,31 +18,34 @@
   <script src="js/dimple.v2.0.0.min.js"></script>
   <script src="js/graph_functions.js"></script>
 </head>
-
 <body>
   <div class="container-fluid">
     <div class="col-md-12 svg_box" id = 'viz_1'>
+      <h3>Survival by Gender</h2>
       <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_2">Percentage</button>
+        <button type="button" class="btn btn-primary active" id = "btn_gender_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_gender_2">Percentage</button>
       </div>
     </div>
     <div class="col-md-12 svg_box" id = 'viz_2'>
+      <h3>Survival by Ticket Class</h2>
       <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_2">Percentage</button>
+        <button type="button" class="btn btn-primary active" id = "btn_ticket_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_ticket_2">Percentage</button>
       </div>
     </div>
     <div class="col-md-12 svg_box" id = 'viz_3'>
+      <h3>Survival by point of Embarkation</h2>
       <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_2">Percentage</button>
+        <button type="button" class="btn btn-primary active" id = "btn_embarkation_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_embarkation_2">Percentage</button>
       </div>
     </div>
     <div class="col-md-12 svg_box" id = 'viz_4'>
+      <h3>Survival by Age group and Gender</h2>
       <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_2">Percentage</button>
+        <button type="button" class="btn btn-primary active" id = "btn_age_sex_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_age_sex_2">Percentage</button>
       </div>
     </div>
   </div>
