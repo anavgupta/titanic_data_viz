@@ -2,68 +2,102 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <style type="text/css">
-    h3 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    div.svg_box {
-      margin-bottom: 50px;
-    }
-  </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style type="text/css" href ="css/titanic_dv.css"></style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="js/d3.v3.min.js"></script>
   <script src="js/dimple.v2.0.0.min.js"></script>
-  <script src="js/graph_functions.js"></script>
+  <script type="text/javascript", src = "js/graph_functions.js"></script>
 </head>
 <body>
   <div class="container-fluid">
+    <div class="introduction">
+      <h1>Introduction</h1>
+      <p class="text-justify">RMS Titanic was a British passenger liner that sank in the North Atlantic Ocean in the early morning hours of 15 April 1912, after it collided with an iceberg during its maiden voyage from Southampton to New York City. The largest passenger liner in service at the time, Titanic had an estimated 2,224 people on board when she struck an iceberg on Sunday, 14 April 1912. It resulted in the deaths of more than 1,500 people, which made it one of the deadliest peacetime maritime disasters in history.</p>
+      <br/>
+      <!-- <p>This tragedy was made      </p> -->
+      <p class="text-justify">A <a src = "https://www.kaggle.com/c/titanic">dataset</a> that contains information about 891 individuals from the total 2224 individuals, present on the Titanic Ship, was taken from the <a src = "https://www.kaggle.com">kaggle </a> website and was analyzed for the factors that affected the survival of an individual on the ship. In my analysis of the dataset, I found that the survival of an individual was based on the following factors:
+        <ol>
+          <li>Sex</li>
+          <li>Ticket Class</li>
+          <li>Point of Embarkation</li>
+          <li>Age</li>
+        </ol>
+      </p>
+    </div>
     <div class="col-md-12 svg_box" id = 'viz_1'>
-      <h3>Survival by Gender</h2>
-      <div class="btn-group col-md-12">
+      <h3>Sex / Gender</h3>
+      <!-- <p><input type="checkbox" name = "age_group" id = "checkbox_age_group">Age Group</p> -->
+      <p class="tex-justify">
+        In this tragedy, the gender of the individual played a significant role in the survival chance of the individual. With a history of being a male dominant, patriarchal society, females were considered to be weak (which we all know that it's not true). Males are supposed to be the protector. Husband to protect their wifes and children, brothers to protect their sisters.I Guess that what happened in the wake of this disaster. When the life of all was in danger, men tried to save as many females and children as they could. So being a female increased the chances of survival in the mishap.
+      </p>
+    </br>
+      <div class="btn-group col-md-6">
         <button type="button" class="btn btn-primary active" id = "btn_gender_1">Count</button>
         <button type="button" class="btn btn-primary" id = "btn_gender_2">Percentage</button>
       </div>
+      <div class="radio col-md-6">
+        <p>Filters</p>
+        <label class="radio-inline"><input type="radio" name="sex_optradio" value="age_group">Age Group</label>
+        <label class="radio-inline"><input type="radio" name="sex_optradio" value="Pclass">Pclass</label>
+        <label class="radio-inline"><input type="radio" name="sex_optradio" value="Embarked">Embarked</label>
+        <label class="radio-inline"><input type="radio" name="sex_optradio" value="None" checked="checked">None</label>
+      </div>
     </div>
     <div class="col-md-12 svg_box" id = 'viz_2'>
-      <h3>Survival by Ticket Class</h2>
-      <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_ticket_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_ticket_2">Percentage</button>
+      <h3>Ticket Class</h3>
+      <p class="text-justify">
+        Titanic ship had three classes of tickets. Lower class, Middle class and Upper class. Titanic ship was considered to be open to people of all classes. People could travel in the maiden voyage of the gigantic and humungous ship ever made, according to that period. (Though many of them many of them didn't make their way back home.) People paid the price they could afford. So in a sense, your social-economical status decided which type of ticket you will buy. Most affluent and influential people traveled in the upper-class tickets, while the common people traveled in the lower and middle-class tickets. From the analysis done, it was discovered that the individuals traveling on the upper-class ticket were more than twice more likely to be saved than the people traveling on the lower class tickets. This gives an indication that in wake of the disaster, the most affluent and influential people were able to mend their way to the lifeboats and in turn to safety.
+      </p>
+      </br>
+      <div class="btn-group col-md-6">
+        <button type="button" class="btn btn-primary active" id = "btn_pclass_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_pclass_2">Percentage</button>
+      </div>
+      <div class="radio col-md-6" >
+        <p>Filters</p>
+        <label class="radio-inline"><input type="radio" name="pclass_optradio" value="Sex">Age Group</label>
+        <label class="radio-inline"><input type="radio" name="pclass_optradio" value="None" checked="checked">None</label>
       </div>
     </div>
     <div class="col-md-12 svg_box" id = 'viz_3'>
-      <h3>Survival by point of Embarkation</h2>
-      <div class="btn-group col-md-12">
+      <h3>Point of Embarkation</h3>
+      <p class="text-justify">
+        Southhampton was the preferred port of choice for many people because of its proximity to London. Of the data available, most of the individuals came from this port which is paradoxical because the individuals from this port were less likely to survive the disaster. Individuals from the Cherbourg port were most likely to survive the disaster among individuals from other ports. While the place of embarkation may not have played the role in the survival of an individual, it also shows the role of the ticket class. Most of the passengers(72%) boarded from Southhampton port and a large proportion of them was male. Majority of those who boarded from Cherbourg port were traveling on Upper-class tickets.
+      </p>
+      <div class="btn-group col-md-6">
         <button type="button" class="btn btn-primary active" id = "btn_embarkation_1">Count</button>
         <button type="button" class="btn btn-primary" id = "btn_embarkation_2">Percentage</button>
       </div>
-    </div>
-    <div class="col-md-12 svg_box" id = 'viz_4'>
-      <h3>Survival by Age group and Gender</h2>
-      <div class="btn-group col-md-12">
-        <button type="button" class="btn btn-primary active" id = "btn_age_sex_1">Count</button>
-        <button type="button" class="btn btn-primary" id = "btn_age_sex_2">Percentage</button>
+      <div class="radio col-md-6">
+        <p>Filters</p>
+        <label class="radio-inline"><input type="radio" name="emb_optradio" value="Sex">Sex</label>
+        <label class="radio-inline"><input type="radio" name="emb_optradio" value="None" checked="checked">None</label>
       </div>
     </div>
+    <div class="col-md-12 svg_box" id = 'viz_4'>
+      <h3>Survival by Age group</h3>
+      <p class="text-justify">
+        Titanic ship was home to people from all age groups. From newborn babies to many elderly peoples. Titanic had it all. In the wake of the disaster, age also played an important role in the survival of the individual. It turns out that children less 10 years had a 30% more chance of survival than the elderly people in 70-80 age group. It may be due to the reason children had a life ahead to live, while elderly people had already lived the majority of their life. So children were specifically saved during the disaster.
+      </p> </br>
+      <div class="btn-group col-md-6">
+        <button type="button" class="btn btn-primary active" id = "btn_age_group_1">Count</button>
+        <button type="button" class="btn btn-primary" id = "btn_age_group_2">Percentage</button>
+      </div>
+      <div class="radio col-md-6">
+        <p>Filters</p>
+        <label class="radio-inline"><input type="radio" name="age_optradio" value="age_group">Sex</label>
+        <label class="radio-inline"><input type="radio" name="age_optradio" value="None" checked="checked">None</label>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h3>Conclusion</h3>
+      <p class="text-justify">
+        Doing the analysis of the Titanic disaster dataset taught me that in wake of danger, we will all try to protect women and children. The men feel an innert responsibility to save them. During a disaster, amid such choas, we will always try to first save our own and then to save somebody else. This is just pure human emotions
+      </p>
+    </div>
   </div>
-  <script>
-
-    // Load the data and call the main 'draw' function
-    d3.csv('data/titanic_data_modified.csv', function(d) {
-      // if changes are need in the data
-      d['count'] = 1;
-      if (d['Survived'] == 0) {
-        d['Outcome'] = "Perished";
-      }
-      else if (d['Survived'] == 1) {
-        d['Outcome'] = "Survived";
-      }
-      // debugger;
-      return d;
-    }, draw);
-  </script>
+  <script type="text/javascript" src="js/data_setup.js"></script>
 </body>
 </html>
